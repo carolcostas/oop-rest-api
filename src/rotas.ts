@@ -2,6 +2,6 @@ import { Router } from "express";
 
 const rotas = Router();
 
-rotas.get("/");
+rotas.get("/", );
 
 export default rotas;
