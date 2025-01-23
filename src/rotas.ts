@@ -16,5 +16,7 @@ rotas.delete("/autores/:id", autorControlador.excluir);
 rotas.get("/posts", postControlador.listar);
 rotas.get("/post/:id", postControlador.detalhar);
 rotas.post("/post/", postControlador.cadastrar);
+rotas.patch("/post/:id", postControlador.editar);
+rotas.delete("/post/:id", postControlador.excluir);
 
 export default rotas;
