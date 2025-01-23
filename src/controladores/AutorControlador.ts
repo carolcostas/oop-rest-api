@@ -32,11 +32,38 @@ export default class AutorControlador {
       });
     }
 
-    const autor = new Autor ({ nome, idade });
+    const autor = new Autor({ nome, idade });
 
     autores.push(autor);
     return res.json({
       mensagem: "Autor cadastrado com sucesso",
     });
   }
+
+  editar(req: Request, res: Response) {
+    const { nome, idade } = req.body;
+    const { id } = req.params;
+
+    if (!nome || !idade) {
+      return res.status(400).json({
+        mensagem: "O nome e a idade do autor são obrigatórios!",
+      });
+    }
+
+    const autor = autores.find((elemento) => {
+      return elemento.id === id;
+    });
+
+    if (!autor) {
+      return res.status(404).json({
+        mensagem: "Autor não encontrado!",
+      });
+    }
+
+    autor.nome = nome;
+    autor.idade = idade;
+
+    return res.status(204).send();
+  }
+
 }
