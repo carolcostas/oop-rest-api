@@ -22,4 +22,21 @@ export default class AutorControlador {
 
     return res.json(autor);
   }
+
+  cadastrar(req: Request, res: Response) {
+    const { nome, idade } = req.body;
+
+    if (!nome || !idade) {
+      return res.status(400).json({
+        mensagem: "O nome e idade do autor são obrigatórios",
+      });
+    }
+
+    const autor = new Autor ({ nome, idade });
+
+    autores.push(autor);
+    return res.json({
+      mensagem: "Autor cadastrado com sucesso",
+    });
+  }
 }
